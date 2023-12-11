@@ -1,0 +1,95 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UFT-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA--Compatible" content= "ie=edge">
+       <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        --><link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/swiper@7.0.5/swiper-bundle.min.css">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <link href="{% static 'css/LoRe.css' %}" rel="stylesheet">
+        <title>Ingreso al sistema</title>
+    </head>
+    <body>
+        <div class="section">
+        <div class =" container">  
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-5">
+                    <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                            <div class="section text-center">
+                            <h4 class="mb-4 pb-3">Inicia Sesion</h4>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-center form_container">
+                            <form  method="post" action="">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                   
+                                    <input class="form-style" type="text" name="username" placeholder="Username..." required>
+                                    <i class="input-icon uil uil-user"></i>
+                                </div>
+            
+                                <div class="form-group mt-2">
+                                  
+                                    <i class="input-icon uil uil-lock-alt"></i>
+                                        <input id="pass" type="password" name="password" placeholder="Password..." class="form-style" required>
+                                       <!-- &nbsp;<input id="check" type="checkbox">-->
+                                </div>
+            
+                                    <div class="d-flex justify-content-center mt-3 login_container">
+                                         <input class="btn mt-4" type="submit" value="Login">
+                                       </div>
+                            </form>
+                        </div>
+                        <p class="mb-0 mt-4 text-center">
+                                    No Tienes una cuenta? <a href="{% url 'main:registro' %}" class="link">Click aqui</a>
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <p class="logo">
+                Made with ❤️ by <b><span>@</span>RealCode</b>
+            </p>
+        </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!--<style>
+  
+          /*.btn{
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            color: #ff2770;
+            border: 1px solid #ff2770;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            transition: 0.3s ease-in-out;
+        } */
+      
+    </style>-->
+<script>
+    check.onclick = togglePassword;
+    
+    function togglePassword(){
+        if(check.checked) pass.type = "text";
+        else pass.type = "password";
+    }
+</script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    --><script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://unpkg.com/swiper@7.0.5/swiper-bundle.min.js"></script>
+</body>
+</html>

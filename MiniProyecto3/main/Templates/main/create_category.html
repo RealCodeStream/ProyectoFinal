@@ -1,0 +1,79 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}
+{% if category %}Editar Categoría{% else %}Crear Categoría{% endif %}
+{% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %}{% endblock %}
+
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}
+<style>
+  
+  
+</style>
+{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+<body>
+<section>
+    <div class="innerPageBannerCol">
+      <div class="container"><!--centra el titulo -->
+        <div class="row g-4 g-md-3  align-items-center">
+          <div class="col-md-6"><!--le da un salto de linea al titulo si es largo -->
+            <div class="bannerContent">
+                <!--style="color: green; -->
+              <h1 class="xlTitle pb-md-3" style="font-size: 78px; font-family: Lovelyn;" >{% if category %}Editar Categoría{% else %}Crear Categoría{% endif %}</h1>
+            <form method="post">
+                {% csrf_token %}
+                <label for="name">Nombre:</label>
+                <input type="text" name="name" value="{% if category %}{{ category.name }}{% endif %}">
+                <br>
+                <label for="description">Descripción:</label>
+                <textarea name="description">{% if category %}{{ category.description }}{% endif %}</textarea>
+                <br>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-secondary" name="cancel" value="cancel">Cancelar</button>
+                  <button type="submit" class="btn btn-primary float-right" name="save" value="save">Guardar</button>
+              </div>
+            </form>
+            <a href="{% url 'main:category_list' %}">Volver al Listado de Categorías</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+</body>
+<head>
+  <link href="{% static 'css/create_category.css' %}" rel="stylesheet">
+</head>
+<!-- ver como incorporar esto -->
+<!-- ================================
+End Content
+================================= -->
+{%endblock%}

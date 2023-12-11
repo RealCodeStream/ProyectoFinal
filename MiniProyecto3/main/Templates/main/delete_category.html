@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<section>
+    <div class="innerPageBannerCol">
+        <div class="container">
+            <div class="row g-4 g-md-3 align-items-center">
+                <div class="col-md-6">
+                    <div class="bannerContent">
+                        <h1 class="xlTitle pb-md-3" style="font-size: 78px; font-family: Lovelyn;">Confirmar Eliminación de Categoría</h1>
+                        <p>¿Estás seguro de que deseas eliminar la categoría "{{ category.name }}"?</p>
+                        <form method="post" action="{% url 'main:category_list'%}">
+                            {% csrf_token %}
+                            <input type="submit" value="Eliminar">
+                        </form>
+                        <a href="{% url 'main:category_list' %}">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<head>
+  <link href="{% static 'css/delete_category.css' %}" rel="stylesheet">
+</head>
+{% endblock %}

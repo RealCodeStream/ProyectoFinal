@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}{% endblock %}
+{% block decription %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+<body >
+  <div class="container">
+    {% if request.user.is_authenticated %}
+  <h1 style="font-size: 45px; font-weight: bold;">Welcome to Our Store</h1>
+  <p >Genial Ahora Disfruta Una Amplia Gama De Productos A Los Mejores Precios. </p>
+  {% else %}
+  <h1 style="font-size: 45px; ">Welcome to Our Store</h1>
+  <p> Inicia Sesion. Ofrecemos una amplia gama de productos
+     a los mejores precios.</p>
+  <a href="{% url 'login' %}" class="btn btn-outline-success" style="position: fixed; left: 330px; top: 350px;">Iniciar Sesion</a>
+  {% endif %}
+   
+    <div class="carousel">
+      <div class="slide"><img src="{% static 'images/vestido.jpg'%}" style="border: none;"></div>
+      <div class="slide"><img src="{% static 'images/freidora.png'%}" style="border: none;"></div>
+      <div class="slide"><img src="{% static 'images/camisa.png'%}" style="border: none;"></div>
+      <div class="slide"><img src="{% static 'images/Honor.png'%}" style="border: none;"></div>
+      <div class="slide"><img src="{% static 'images/abanico.png'%}" style="border: none;"></div>
+      <div class="slide"><img src="{% static 'images/termometro.png'%}" style="border: none;"></div>
+     </div>
+   
+</div>
+  <script src="{% static 'js/carrusel.js'%}"></script>
+</body>
+<script>
+  setTimeout(function(){
+    if ($('#msg2').length > 0){
+      $('#msg2').remove();
+    }
+
+  }, 1000)
+</script>
+<head><link href="{% static 'css/index.css' %}" rel="stylesheet"></head>
+{% endblock %}
+<!-- ================================
+End Content
+================================= -->

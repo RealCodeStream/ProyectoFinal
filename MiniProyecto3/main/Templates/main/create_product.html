@@ -1,0 +1,97 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}
+{% if product %}Editar Producto{% else %}Crear Producto{% endif %}
+{% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}
+<style>
+  
+</style>
+{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+<body style="background-color: linear-gradient(90deg, rgba(94,110,117,1) 0%, rgba(45,100,94,1) 51%, rgba(3,60,85,1) 100%);">
+<section>
+    <div class="innerPageBannerCol">
+      <div class="container"><!--centra el titulo -->
+        <div class="row g-4 g-md-3  align-items-center">
+          <div class="col-md-6"><!--le da un salto de linea al titulo si es largo -->
+            <div class="bannerContent">
+                <!--style="color: green; -->
+              <h1 class="xlTitle pb-md-3" style="font-size: 78px; font-family: Lovelyn;" >{% if product %}Editar Producto{% else %}Crear Producto{% endif %}</h1>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="name">Nombre:</label><br>
+                <input type="text" name="name" value="{% if product %}{{ product.name }}{% endif %}">
+                <br>
+                <label for="description">Descripción:</label><br>
+                <textarea name="description">{% if product %}{{ product.description }}{% endif %}</textarea>
+                <br>
+                <label for="price">Precio:</label><br>
+                <input type="text" name="price" value="{% if product %}{{ product.price }}{% endif %}">
+                <br>
+                <label for="category">Categoría:</label><br>
+                <select name="category">
+                    <option value="" {% if not product.category %}selected{% endif %}>Elegir categoría</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}"
+                            {% if product and product.category == category %}selected{% endif %}>
+                            {{ category.name }}
+                        </option>
+                    {% endfor %}
+                </select>                
+                <br>
+                <label for="image">Imagen:</label><br>
+                <input type="file" name="image">
+                
+                {% if product %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100"> 
+                {% endif %}
+                <br><br>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-secondary" name="cancel" value="cancel">Cancelar</button>
+                  <button type="submit" class="btn btn-primary float-right" name="save" value="save">Guardar</button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+<head>
+  <link href="{% static 'css/create_product.css' %}" rel="stylesheet">
+</head>
+<!-- ver como incorporar esto -->
+<!-- ================================
+End Content
+================================= -->
+{%endblock%}

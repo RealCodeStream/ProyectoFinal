@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  button {
+    background-color: #222;
+    color: #fff;
+  }
+  section {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin-top: 10px;
+  }
+  
+  a {
+    color: #222;
+    text-decoration: none;
+  }
+
+  body{
+    background: linear-gradient(90deg, rgba(94,110,117,1) 0%, rgba(45,100,94,1) 51%, rgba(3,60,85,1) 100%);
+}

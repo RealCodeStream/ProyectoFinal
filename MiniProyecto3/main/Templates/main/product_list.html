@@ -1,0 +1,228 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}Listado de Productos{% endblock %}
+{% block description %}Lista de todos los productos disponibles{% endblock %}
+{% block keywords %}productos, categorías{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}
+<style>
+
+</style>
+{% endblock %}
+<!-- ================================
+
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const categoryButton = document.querySelector(".category-button");
+    const categoryMenu = document.querySelector(".category-menu");
+
+    categoryButton.addEventListener("click", function() {
+        categoryMenu.style.display = (categoryMenu.style.display === "block") ? "none" : "block";
+    });
+
+    document.addEventListener("click", function(event) {
+        if (!categoryButton.contains(event.target) && !categoryMenu.contains(event.target)) {
+            categoryMenu.style.display = "none";
+        }
+    });
+});
+</script>
+{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+<body>
+    <section>
+        <div class="innerPageBannerCol">
+            <div class="container">
+                <!--centra el titulo -->
+                <div class="row g-4 g-md-3 align-items-center">
+                    <div class="col-md-12"> <!--tamano del contenido-->
+                        <!--le da un salto de linea al titulo si es largo -->
+                        <div class="bannerContent"><br>
+                            <!--<h1 class="xlTitle pb-md-3" style="font-size: 128px; font-family: Lovelyn; font-weight: bold;text-align: center;">Productos</h1>-->
+                            <!-- Agrega un formulario de filtro por categoría -->
+                            <div class="category-button">Categoría: {{ selected_category_name }}</div>
+                            <div class="category-menu">
+                                <a href="{% url 'main:product_list' %}" class="{% if not selected_category_id %}active{% endif %}">Todos</a>
+                                {% for category in categories %}
+                                    <a href="{% url 'main:product_list' %}?category={{ category.id }}" class="{% if category.id == selected_category_id %}active{% endif %}" >{{ category.name }}</a>
+                                {% endfor %}
+                            </div>
+                            <div class="product-list">
+                                {% for product in products %}
+                                
+                                    <div class="product-container">
+                                        <div class="product-image">
+                                            {% if product.image %}
+                                            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 100%; max-height: 100%;">
+                                            {% else %}
+                                            <p>Imagen no disponible</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="product-details">
+                                            <h2>{{ product.name }}</h2>
+                                            <p>{{ product.description|truncatechars:100 }}</p>
+                                            <p><strong>Precio: ${{ product.price }}</strong></p>
+                                            {% if user.is_staff %}
+                                            <a  href="{% url 'main:edit_product' product.id %}"><i class="fas fa-pencil-alt"></i> Editar</a><br>
+                                            {% endif %}
+                                            <div id="share-buttons">
+
+                                                <!-- facebook -->
+                                                <a class="facebook" target="blank"><i class="fab fa-facebook"></i></a>
+                                                
+                                                <!-- twitter -->
+                                                <a class="twitter" target="blank"><i class="fab fa-twitter"></i></a>
+                                                
+                                                <!-- linkedin -->
+                                                <a class="linkedin" target="blank"><i class="fab fa-linkedin"></i></a>
+                                                
+                                                <!-- reddit -->
+                                                <a class="reddit" target="blank"><i class="fab fa-reddit"></i></a>
+                                              
+                                                <!-- whatsapp-->
+                                                <a class="whatsapp" target="blank"><i class="fab fa-whatsapp"></i></a>
+                                              
+                                                <!-- telegram-->
+                                                <a class="telegram" target="blank"><i class="fab fa-telegram"></i></a>
+                                              
+                                              </div>
+                                            <div class="right-align">
+                                            <a  href="{% url 'main:product_detail' product.id %}" class="button">Dejar Reseña</a>
+                                            <a  href="{% url 'main:add_to_cart' product.id %}" class="button">Agregar al carrito</a>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                {% endfor %}
+                            </div>
+                            {% if user.is_staff %}
+                            <a href="{% url 'main:create_product' %}">Crear Nuevo Producto</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        
+        /* Estilo base del botón/enlace */
+        a.button {
+          display: inline-block;
+        padding: 10px 20px;
+        font-size: 12px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        background-color:#ff2770;
+        }
+    
+       
+        /* Efecto de brillo al pasar el ratón sobre el botón/enlace */
+        a.button:hover {
+          opacity: 0.8; /* Cambia el color de fondo al pasar el ratón */
+        }
+
+        .right-align {
+            text-align: right;
+            margin-right: 20px; /* Ajusta el margen derecho según sea necesario */
+          }
+
+
+          #share-container span {
+            display: block;
+            margin: 3rem auto;
+            font-size: 50px;
+            padding: 1rem;
+            margin: 1rem;
+          }
+          #share-buttons i {
+            font-size: 30px;
+            margin: 5px;
+          }
+          .facebook {
+                color: #3b5998;
+          }
+          .twitter {
+              color: #55acee;
+          }
+          .linkedin {
+              color: #0077b5;
+          }
+          .reddit {
+              color: #cb2027;
+          }
+          .whatsapp {
+              color: #25D366;
+          }
+          .telegram {
+              color: #229ED9;
+          }
+          .facebook, .twitter, .linkedin, .reddit, .whatsapp, .telegram {
+            opacity: 0.6;
+          }
+          .facebook:hover, .twitter:hover, .linkedin:hover, .reddit:hover, .whatsapp:hover, .telegram:hover {
+            opacity: 0.9;
+          }
+    </style>
+</body>
+<script>
+    const link = encodeURI(window.location.href);
+    const msg = encodeURIComponent('Hey, I found this article');
+    const title = encodeURIComponent('Article or Post Title Here');
+    
+    const fb = document.querySelector('.facebook');
+    fb.href = `https://www.facebook.com/share.php?u=${link}`;
+    
+    const twitter = document.querySelector('.twitter');
+    twitter.href = `http://twitter.com/share?&url=${link}&text=${msg}&hashtags=javascript,programming`;
+    
+    const linkedIn = document.querySelector('.linkedin');
+    linkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${link}`;
+    
+    const reddit = document.querySelector('.reddit');
+    reddit.href = `http://www.reddit.com/submit?url=${link}&title=${title}`;
+    
+    const whatsapp = document.querySelector('.whatsapp');
+    whatsapp.href = `https://api.whatsapp.com/send?text=${msg}: ${link}`;
+    
+    const telegram = document.querySelector('.telegram');
+    telegram.href = `https://telegram.me/share/url?url=${link}&text=${msg}`;
+</script>
+<head>
+  <link href="{% static 'css/product_list.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<!-- ver como incorporar esto -->
+<!-- ================================
+End Content
+================================= -->
+{% endblock %}

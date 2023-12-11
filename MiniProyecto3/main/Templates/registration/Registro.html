@@ -1,0 +1,101 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UFT-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA--Compatible" content= "ie=edge">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        --><link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/swiper@7.0.5/swiper-bundle.min.css">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <link href="{% static 'css/LoRe.css' %}" rel="stylesheet">
+        <title>Registro de usuario</title>
+    </head>
+    <body>
+        <div class="section">
+        <div class =" container">
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-5">
+                    <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                            <div class="section text-center">
+                            <h4 class="mb-4 pb-3">Registratre</h4>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-center form_container">
+                            <form id="from-login" method="post" action="">
+                                {% csrf_token %}
+                                   <div class="form-group">
+                        <!--{{ form.username}}-->
+                        <input type="text" id="username" name="username" class="form-style" placeholder="Username..." required>
+                       <i class="input-icon uil uil-user"></i>
+                    </div>
+                    <div class="form-group mt-2">
+                        <!--{{form.email}}-->
+                        <input type="email" id="email" name="email" class="form-style" placeholder="Email.." required>
+                        <i class="input-icon uil uil-at"></i>
+                    </div>
+                    <div class="form-group mt-2">
+                        <!--{{form.password1}}-->
+                        <input type="password" id="password1" name="password1" class="form-style" placeholder="Enter Password..." required>
+                        <i class="input-icon uil uil-lock-alt"></i>
+                    </div>
+                    <div class="form-group mt-2">
+                        <!--{{form.password2}}-->
+                        <input type="password" id="password2" name="password2" class="form-style" placeholder="Re-enter Password..." required>
+                        <i class="input-icon uil uil-lock-alt"></i>
+                    </div>
+
+                       <div class="d-flex justify-content-center mt-4 login_container">
+                         <input class="btn mt-4" type="submit" value="Crear Cuenta">
+                       </div>
+                            </form>
+                        </div>
+                        {{form.errors}}
+            
+                        <p class="mb-0 mt-4 text-center">
+                    Ya tienes una cuenta?  <a href="{% url 'login' %}" class="link">Click aqui</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<br><hr>
+<p class="logo">
+    Made with ❤️ by <b><span>@</span>RealCode</b>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+        <script>
+        
+</script>
+<style> 
+   
+     /* .btn{
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        color: #ff2770;
+        border: 1px solid #ff2770;
+        text-decoration: none;
+        border-radius: 15px;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        transition: 0.3s ease-in-out;
+    }*/
+      
+</style>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    --><script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://unpkg.com/swiper@7.0.5/swiper-bundle.min.js"></script>
+</body>
+</html>

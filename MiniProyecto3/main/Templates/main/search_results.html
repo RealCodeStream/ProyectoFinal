@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+{% load static  %}
+
+{% block content %}
+  
+        {% for product in productos %}
+        <!--<h2 style="font-size: 70px; font-family: Lovelyn; font-weight: bold;text-align: center;">Producto Existente</h2>-->
+        <h2 style="font-size: 70px; font-family: Lovelyn; font-weight: bold;text-align: center;">{{ product.name }}</h2>
+        <br>
+        <div class="container">
+        <div class="">
+            <div class="product-image">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 50%; max-height: 100%;">
+            </div>
+            <div class="">
+                <p class=""><strong>Precio: ${{ product.price }}</strong></p>
+                <p class="">{{ product.description }}</p>
+                <div class="right-align">
+                <a  href="{% url 'main:add_to_cart' product.id %}" class="button">Agregar al carrito</a>
+                <a href="{% url 'main:home'%}" class="button">REGRESAR</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+        {% endfor %}
+        
+    
+<br>
+    <style>
+        img {
+            display: block;
+            margin: 0 auto;
+          } 
+          
+          /* Estilo base del botón/enlace */
+          a.button {
+            display: inline-block;
+          padding: 10px 40px;
+          font-size: 12px;
+          text-align: center;
+          text-decoration: none;
+          cursor: pointer;
+          border: none;
+          border-radius: 4px;
+          color: #fff;
+          background-color:#ff2770;
+          }
+      
+         
+          /* Efecto de brillo al pasar el ratón sobre el botón/enlace */
+          a.button:hover {
+            opacity: 0.8; /* Cambia el color de fondo al pasar el ratón */
+          }
+  
+          .right-align {
+              text-align: right;
+              margin-right: 20px; /* Ajusta el margen derecho según sea necesario */
+            }
+    </style>
+{% endblock %}

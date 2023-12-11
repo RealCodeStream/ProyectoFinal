@@ -1,0 +1,273 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}Listado de Categorías{% endblock %}
+{% block description %}Lista de todas las categorías disponibles{% endblock %}
+{% block keywords %}categorías, productos{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}
+<style>
+   
+</style>
+{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+<body >
+    
+    <section>
+        <div class="innerPageBannerCol">
+            <div class="container"><!--centra el titulo -->
+                <div class="row g-4 g-md-3  align-items-center">
+                    <div class="col-md-10"><!--le da un salto de linea al titulo si es largo -->
+                        <div class="bannerContent">
+                            <!--<h1 class="xlTitle pb-md-3" style="font-size: 78px; font-family: Lovelyn;">Detalles:</h1>-->
+                            <br>
+                            <div class="container">
+                                
+                                <div class="product-details-container">
+                                    
+                                    <div class="product-image">
+                                        
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 100%; max-height: 100%;">
+                                    </div>
+                                    <div class="product-details">
+                                        
+                                        <h2 class="product-name">{{ product.name }}</h2>
+                                        <p class="product-price"><strong>Precio: ${{ product.price }}</strong></p>
+                                        <p class="product-description">{{ product.description }}</p>
+                                        <a href="{% url 'main:product_list' %}" class="button">Regresar a Productos</a>
+                                    </div>
+                                </div>
+                                
+                               
+                                <br><br>
+
+                                <h3 style="font-family: Lovelyn; font-weight: bold; text-align: center;">Dejar una Reseña para :{{ product.name }}</h3>
+                                <br>
+                                <form method="post" action="{% url 'main:add_review' product.id %}">
+                                    {% csrf_token %}
+                                    <label for="rating">⭐1-5:</label>
+                                    <input type="number" name="rating" min="1" max="5" required>
+                                    <div class="form-group">
+                                        <label for="comment" >Comentario:</label><br>
+                                        <textarea name="comment" rows="2" cols="60"   ></textarea>
+                                    </div>
+                                      
+                                      <div>
+                                        {% if user.is_authenticated %}
+                                        <div class="right-align">
+                                            <input type="submit" value="Enviar reseña" class="button">
+                                        </div>
+                                        {% else %}
+                                            <p>No has iniciado sesión. <span><a href="{% url '/' %}">Click aquí</a></span></p>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                                
+                                <br>
+                                <h1 style="font-family: Lovelyn; font-weight: bold; text-align: center;">Reviews</h1>
+                                {% for review in reviews %}
+                                <div class="testimonial-box-container">
+                                    <div class="testimonial-box">
+                                        <div class="box-top">
+                                            <div class="profile">
+                                                <div class="profile-img">
+                                                    <img src="{% static 'images/usuario.png'%}" />
+                                                </div>
+                                                <div class="name-user">
+                                                    <strong>{{ review.user.username }}</strong>
+                                                    <span>{{ review.user.email }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="reviews">
+                                                <p>{{ review.rating }}/5<span class="stars">&#9733;</span></p>
+                                            
+                                            </div>
+                                        </div>
+                                        <div class="client-comment">
+                                            <p>{{ review.comment }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                    <li>No hay reseñas para este producto.</li>
+                                    {% endfor %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style> 
+        /* Estilo base del botón/enlace */
+    a.button {
+      display: inline-block;
+    padding: 12px 20px;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color:#ff2770;
+    }
+
+   
+    /* Efecto de brillo al pasar el ratón sobre el botón/enlace */
+    a.button:hover {
+      opacity: 0.8; /* Cambia el color de fondo al pasar el ratón */
+    }
+
+        form {
+            margin: 0 auto;
+            width: 50%;
+          }
+
+        .testimonial-box-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        
+        .testimonial-box {
+            width: 800px;
+            box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            margin: 20px;
+            padding: 15px;
+            cursor: pointer;
+        }
+        
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+        
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+        
+        .name-user {
+            display: flex;
+            flex-direction: column; 
+        }
+        
+        .name-user strong {
+            color: #3d3d3d;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .name-user span {
+            color: #979797;
+            font-size: 0.8rem;
+        }
+        
+        .reviews {
+            color: #f9d71c;
+        }
+        
+        .box-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .client-comment p {
+            font-size: 0.9rem;
+            color: #4b4b4b;
+        }
+        
+        .testimonial-box:hover {
+            transform: translateY(-10px);
+            transition: all ease 0.3s; 
+        }
+        
+        .right-align {
+            text-align: right;
+            margin-right: 20px; /* Ajusta el margen derecho según sea necesario */
+          }
+
+
+          /* Estilo base del botón/enlace */
+          input.button {
+            display: inline-block;
+          padding: 12px 20px;
+          font-size: 12px;
+          text-align: center;
+          text-decoration: none;
+          cursor: pointer;
+          border: none;
+          border-radius: 4px;
+          color: #fff;
+          background-color:#ff2770;
+          }
+      
+         
+          /* Efecto de brillo al pasar el ratón sobre el botón/enlace */
+          input.button:hover {
+            opacity: 0.8; /* Cambia el color de fondo al pasar el ratón */
+          }
+    </style>
+    <script>
+        setTimeout(function(){
+          if ($('#msg2').length > 0){
+            $('#msg2').remove();
+          }
+      
+        }, 1000)
+      </script>
+</body>
+<head>
+  <link href="{% static 'css/product_detail.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel"stylesheet">
+    
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<!-- ver como incorporar esto -->
+<!-- ================================
+End Content
+================================= -->
+{% endblock %}
+

@@ -1,0 +1,57 @@
+ /* Estilo para la lista de categorías */
+ ul.category-list {
+    list-style: none;
+    padding: 0;
+}
+
+ul.category-list li {
+    margin-bottom: 10px;
+    font-size: 18px; /* Tamaño de fuente deseado */
+}
+
+ul.category-list li a {
+    text-decoration: none;
+    color: #0000A0; /* Cambia este valor al color deseado */
+}
+
+ul.category-list li a:hover {
+    text-decoration: underline; /* Subrayar al pasar el mouse */
+}
+
+/* Estilo para el contenedor de detalles del producto */
+.product-details-container {
+    display: flex;
+    align-items: center;
+}
+
+.product-image {
+    width: 240px;
+    height: 240px;
+    background-color: #f0f0f0; /* Fondo gris-blanco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-name {
+    font-size: 24px; /* Tamaño de fuente para el nombre del producto */
+}
+
+.product-description {
+    font-size: 18px; /* Tamaño de fuente para la descripción */
+}
+
+.product-price {
+    font-size: 20px; /* Tamaño de fuente para el precio */
+}
+
+.stars {
+    font-size: 2rem;
+    color: #FFD700;
+}

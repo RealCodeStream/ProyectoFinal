@@ -1,0 +1,70 @@
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    height: 100%;
+}
+
+.product-image {
+    width: 240px;
+    height: 240px;
+    background-color: #f0f0f0; /* Fondo gris-blanco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+}
+
+.product-details {
+    flex: 1;
+    padding-left: 10px;
+}
+
+/* Estilos para el botón Categorías */
+.category-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px; /* Ajustar el espaciado interno */
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px; /* Separar el botón del primer producto */
+    width: 120px; /* Ancho automático para el botón */
+    text-align: center; /* Centrar el texto en el botón */
+}
+
+/* Estilos para el menú de categorías */
+.category-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    min-width: 90px; /* Ajustar el ancho mínimo */
+    text-align: left; /* Alinear el texto a la izquierda */
+}
+
+.category-button:hover + .category-menu, .category-menu:hover {
+    display: block;
+}
+
+.category-menu a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+}
+
+.category-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilos para alinear los productos a la derecha */
+.product-list {
+    margin-left: auto;
+    margin-right: 0;
+}

@@ -1,0 +1,105 @@
+{%load static%}
+<head>
+  <link href="{% static 'css/nav.css' %}" rel="stylesheet">
+  
+</head>
+<body class="">
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <!--<a class="navbar-brand" href="#">Offcanvas navbar</a>-->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--<a class="navb-brand"> <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" width="" height="" class="d-inline-block align-text-top">
+            </a>-->
+      <div
+        class="offcanvas-start offcanvas"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+      >
+        <div class="offcanvas-header">
+          <a href="#"><img src="{% static 'images/home.png' %}" type="image/png" rel="icon"></a>
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">CodeReal</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul
+            class="navbar-nav justify-content-end flex-grow-1 pe-3"
+            style="font-family: 'Chivo Mono', monospace"
+          >
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{%url 'main:home' %}"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{%url 'main:category_list'%}"
+                >Categorias</a
+              >
+            </li>
+            <li class="nav-item"><a class="nav-link active"
+              aria-current="page" href="{% url 'main:product_list' %}">Productos</a></li>
+            </li>
+
+            <li class="nav-item"><a class="nav-link active"
+              aria-current="page" href="{% url 'main:order_history' %}">Pedidos</a></li>
+            </li>
+              
+            <li class="nav-item">
+              <form action="{% url 'main:logout'%}" method="post">
+                {% csrf_token %}
+                <input
+                  class="btn btn-outline-success"
+                  type="submit"
+                  value="Cerrar Sesion"
+                />
+              </form>
+            </li>
+
+            {% else %}
+            <li>
+              <a href="{% url 'login' %}" class="btn btn-outline-success"
+                >Iniciar Sesion</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      
+      {% if request.user.is_authenticated %}
+      <form class="d-flex"  role="search" action="{% url 'main:search'  %}" method="get">
+        <input
+          class="form-control me-2"
+          type="text" name="q"
+          placeholder="Buscar productos..."
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      
+      <a href="{% url 'main:carrito_de_compras'%}"><img src="{% static 'images/carrito.png' %}" type="image/png" rel="icon"></a>
+      {% endif %}
+    </div>
+  </nav>
+</body>

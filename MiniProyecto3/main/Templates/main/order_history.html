@@ -1,0 +1,148 @@
+{% extends 'main/base.html' %}
+{%load static%}
+
+{% block content %}
+<body> <br>
+    <h1 style="font-family: Lovelyn; font-weight: bold; text-align: center;">Ordenar Pedido</h1>
+
+    <form method="post" action="{% url 'main:order_history' %}">
+        {% csrf_token %}
+        <label for="comment" >Comentario:</label><br>
+        <textarea name="comment" rows="2" cols="60"   ></textarea><br>
+        <div class="right-align">
+        <button type="submit" class="button">Agregar Pedido</button>
+        </div>
+    </form>
+
+    <br><br><br><br>
+    <h2 style="font-family: Lovelyn; font-weight: bold; text-align: center;">Historial de Pedidos</h2>
+      
+        {% for order in order_histories %}
+    <div class="testimonial-box-container">
+        <div class="testimonial-box">
+            <div class="box-top">
+                <div class="profile">
+                    <div class="profile-img">
+                        <img src="{% static 'images/html_table.jpg'%}" />
+                    </div>
+                    <div class="name-user">
+                        <strong>{{ order.user.username }}</strong>
+                        <span>{{ order.user.email }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="client-comment">
+                <p>{{ order.comment }}</p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <li>No hay reseñas para este producto.</li>
+        {% endfor %}
+    
+</body>
+
+<style>
+    form {
+        margin: 0 auto;
+        width: 30%;
+      }
+
+
+      /* Estilo base del botón/enlace */
+      button.button {
+      display: inline-block;
+    padding: 10px 30px;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color:#ff2770;
+    }
+
+   
+    /* Efecto de brillo al pasar el ratón sobre el botón/enlace */
+    button.button:hover {
+      opacity: 0.8; /* Cambia el color de fondo al pasar el ratón */
+    }
+
+      /* Posiciona el botón a la derecha */
+      .right-align {
+        text-align: right;
+        margin-right: 20px; /* Ajusta el margen derecho según sea necesario */
+      }
+
+      .testimonial-box-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    
+    .testimonial-box {
+        width: 800px;
+        box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        margin: 20px;
+        padding: 15px;
+        cursor: pointer;
+    }
+    
+    .profile-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+    }
+    
+    .profile-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .profile {
+        display: flex;
+        align-items: center;
+    }
+    
+    .name-user {
+        display: flex;
+        flex-direction: column; 
+    }
+    
+    .name-user strong {
+        color: #3d3d3d;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .name-user span {
+        color: #979797;
+        font-size: 0.8rem;
+    }
+    
+    .box-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .client-comment p {
+        font-size: 0.9rem;
+        color: #4b4b4b;
+    }
+    
+    .testimonial-box:hover {
+        transform: translateY(-10px);
+        transition: all ease 0.3s; 
+    }
+</style>
+{% endblock %}

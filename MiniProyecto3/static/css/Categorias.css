@@ -1,0 +1,32 @@
+body { 
+    scroll-padding-top: 1.25rem
+}
+.container{
+    width: 1600px;
+    max-width: 100%;
+    margin: auto;
+}
+ul.category-list {
+    list-style: none;
+    padding: 0;
+}
+
+ul.category-list li {
+    margin-bottom: 10px;
+    font-size: 18px; /* Tamaño de fuente deseado */
+}
+
+ul.category-list li a {
+    text-decoration: none;
+    color: #0000A0; /* Cambia este valor al color deseado */
+}
+
+ul.category-list li a:hover {
+    text-decoration: underline; /* Subrayar al pasar el mouse */
+}
+
+section {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }

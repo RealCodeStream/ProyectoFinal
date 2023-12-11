@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+section {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+  body{/*No me permite darle color al fondo */
+    background: linear-gradient(90deg, rgba(94,110,117,1) 0%, rgba(45,100,94,1) 51%, rgba(3,60,85,1) 100%);
+}

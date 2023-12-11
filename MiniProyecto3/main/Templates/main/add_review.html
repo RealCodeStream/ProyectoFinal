@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Detalles del Producto{% endblock %}
+{% block description %}Detalles del producto seleccionado{% endblock %}
+{% block keywords %}producto, detalles, revisión{% endblock %}
+
+{% block extend_header %}
+<style>
+  /* Agregar estilos personalizados aquí si es necesario */
+</style>
+{% endblock %}
+
+{% block extend_footer %}
+<script>
+  // Agregar scripts personalizados aquí si es necesario
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  
+  <h1>Dejar una revisión para {{ productos.name }}</h1>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="form-group">
+          <label for="{{ form.rating.id_for_label }}">Calificación:</label>
+          {{ form.rating }}
+          {{ form.rating.errors }}
+      </div>
+      <div class="form-group">
+          <label for="{{ form.comment.id_for_label }}">Comentario:</label>
+          {{ form.comment }}
+          {{ form.comment.errors }}
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar Revisión</button>
+  </form>
+</div>
+{% endblock %}

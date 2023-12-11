@@ -1,0 +1,18 @@
+nav .btn {
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    color: #ff2770;
+    border: 1px solid #ff2770;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: 0.3s ease-in-out;
+    
+}
+
+  nav .btn:hover {
+    scale: 105%;
+  }

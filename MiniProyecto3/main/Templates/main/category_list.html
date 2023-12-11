@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}{% endblock %}
+{% block decription %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+<body >
+    <section >
+    <div class="innerPageBannerCol" >
+        <div class="container"><div class="row g-4 g-md-3  align-items-center">
+            <div class="col-md-8"><div class="bannerContent"><br>
+                <!--style="color: green; -->
+                <!--<h1 class="xlTitle pb-md-3" style="font-size: 168px; font-family: Lovelyn; font-weight: bold; text-align: center;" >Categorías</h1>-->
+                {% if user.is_staff %}
+            <a href="{% url 'main:create_category' %}">Crear Nueva Categoría</a>
+            {% endif %}
+                <ul class="category-list"><br>
+                {% for category in categories %}
+                    <li>{% if user.is_staff %}<a href="{% url 'main:edit_category' category.id %}">Editar</a>{% endif %}
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a style="font-size: 35px;">{{ category.name }}</a> :<br> 
+                        <a style="font-size: 20px; text-align: center;">{{ category.description|truncatechars:100 }}</a> <!-- Tamano de la descripcion -->
+                    </li>
+                {% endfor %}
+                </ul>    
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+</body>
+<head>
+    <link href="{% static 'css/Categorias.css' %}" rel="stylesheet">
+</head>
+{% endblock %}
+<!-- ================================
+End Content
+================================= -->
